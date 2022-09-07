@@ -1,8 +1,4 @@
-package models;
-
-import controllers.IModelController;
-import controllers.PeopleController;
-import controllers.TeamController;
+package controllers;
 
 import java.io.DataInputStream;
 import java.io.PrintStream;
@@ -10,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
-public class ServerOperation {
+public class ServerOperationController {
 
     final String OPERATION_INSERT = "INSERT";
     final String OPERATION_UPDATE = "UPDATE";
@@ -20,7 +16,7 @@ public class ServerOperation {
 
     PrintStream printStream;
     DataInputStream dataInputStream;
-    public ServerOperation(int port) throws Exception {
+    public ServerOperationController(int port) throws Exception {
         ServerSocket serverSocket = new ServerSocket(port);
         Socket socket = serverSocket.accept();
 
@@ -48,6 +44,7 @@ public class ServerOperation {
             case OPERATION_GET -> response = controller.get(params, this.printStream);
             case OPERATION_DELETE -> response = controller.delete(params, this.printStream);
             case OPERATION_LIST -> response = controller.list(params, this.printStream);
+            default -> throw new Exception("Operação não reconhecida.");
         }
         return response;
     }

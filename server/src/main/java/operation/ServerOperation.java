@@ -39,7 +39,7 @@ public class ServerOperation {
 
     private String executeOperation(String message) throws Exception {
         System.out.println("Requisição recebida: " + message);
-        String response = null;
+        String response;
         HashMap<String, String> params = this.getParams(message);
         IModelController controller = switch (params.get("modelo")) {
             case "pessoa" -> new PeopleController();

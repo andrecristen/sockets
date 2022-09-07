@@ -27,7 +27,7 @@ public class TeamController implements IModelController {
             People lider = DataBaseController.peoples.get(params.get("lider"));
             if (lider != null) {
                 Date dataFundacao = DateUtil.stringToDateTime(params.get("dataFundacao"), DateUtil.FORMAT_DATE_BRAZILIAN);
-                team.setNome(params.get("nome"));
+                team.setNome(params.get("nomeNome"));
                 team.setSetor(params.get("setor"));
                 team.setDataFundacao(dataFundacao);
                 team.setLider(lider);

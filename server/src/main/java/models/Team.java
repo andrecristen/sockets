@@ -1,5 +1,7 @@
 package models;
 
+import utils.DateUtil;
+
 import java.util.Date;
 import java.util.HashMap;
 
@@ -72,12 +74,6 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "nome='" + nome + '\'' +
-                ", setor='" + setor + '\'' +
-                ", dataFundacao=" + dataFundacao +
-                ", lider=" + lider +
-                ", integrantes=" + integrantes +
-                '}';
+        return nome + ";" + setor + ";" + DateUtil.dateTimeToString(dataFundacao, DateUtil.FORMAT_DATE_BRAZILIAN) + ";" + lider + ";" + integrantes.size();
     }
 }

@@ -2,6 +2,7 @@ package interfaces;
 
 import controllers.DataBaseController;
 import models.People;
+import models.Team;
 
 import java.io.PrintStream;
 import java.util.HashMap;
@@ -23,8 +24,10 @@ public interface IModelController {
     public String remove(HashMap<String, String> params, PrintStream printStream);
 
     public static People findPeopleByParams(HashMap<String, String> params) {
-        String cpf = params.get("cpf");
-        return DataBaseController.peoples.get(cpf);
+        return DataBaseController.peoples.get(params.get("cpf"));
+    }
+    public static Team findTeamByParams(HashMap<String, String> params) {
+        return DataBaseController.teams.get(params.get("nome"));
     }
 
 }

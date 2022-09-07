@@ -1,4 +1,4 @@
-package controllers;
+package interfaces;
 
 import java.io.PrintStream;
 import java.util.HashMap;

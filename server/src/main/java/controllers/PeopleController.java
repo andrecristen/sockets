@@ -1,11 +1,12 @@
 package controllers;
 
+import interfaces.IModelController;
 import models.People;
 
 import java.io.PrintStream;
 import java.util.HashMap;
 
-public class PeopleController implements IModelController{
+public class PeopleController implements IModelController {
 
     @Override
     public String insert(HashMap<String, String> params, PrintStream printStream) {

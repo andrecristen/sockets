@@ -1,4 +1,8 @@
-package controllers;
+package operation;
+
+import controllers.PeopleController;
+import controllers.TeamController;
+import interfaces.IModelController;
 
 import java.io.DataInputStream;
 import java.io.PrintStream;
@@ -6,7 +10,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
-public class ServerOperationController {
+public class ServerOperation {
 
     final String OPERATION_INSERT = "INSERT";
     final String OPERATION_UPDATE = "UPDATE";
@@ -16,8 +20,9 @@ public class ServerOperationController {
 
     PrintStream printStream;
     DataInputStream dataInputStream;
-    public ServerOperationController(int port) throws Exception {
+    public ServerOperation(int port) throws Exception {
         ServerSocket serverSocket = new ServerSocket(port);
+        serverSocket.setReuseAddress(true);
         Socket socket = serverSocket.accept();
 
         this.printStream = new PrintStream(socket.getOutputStream());
@@ -31,6 +36,7 @@ public class ServerOperationController {
     }
 
     private String executeOperation(String message) throws Exception {
+        System.out.println("Requisição recebida: " + message);
         String response = null;
         HashMap<String, String> params = this.getParams(message);
         IModelController controller = switch (params.get("modelo")) {

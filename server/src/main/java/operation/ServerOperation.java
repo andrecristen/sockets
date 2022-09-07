@@ -33,7 +33,9 @@ public class ServerOperation {
         boolean inOperation = true;
         while(inOperation) {
             String message = this.dataInputStream.readUTF();
-            this.printStream.println(this.executeOperation(message));
+            String response = this.executeOperation(message);
+            System.out.println("Resposta: \n" + response);
+            this.printStream.println(response);
         }
     }
 

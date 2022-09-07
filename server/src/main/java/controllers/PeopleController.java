@@ -17,7 +17,7 @@ public class PeopleController implements IModelController {
 
     @Override
     public String update(HashMap<String, String> params, PrintStream printStream) {
-        People people = this.findPeopleByParams(params);
+        People people = IModelController.findPeopleByParams(params);
         if (people != null) {
             people.setNome(params.get("nome"));
             people.setEndereco(params.get("endereco"));
@@ -32,7 +32,7 @@ public class PeopleController implements IModelController {
         if (DataBaseController.peoples.isEmpty()) {
             return "Sem pessoas cadastradas";
         } else {
-            People people = this.findPeopleByParams(params);
+            People people = IModelController.findPeopleByParams(params);
             if (people != null) {
                 return people.toString();
             } else {
@@ -46,7 +46,7 @@ public class PeopleController implements IModelController {
         if (DataBaseController.peoples.isEmpty()) {
             return "Sem pessoas cadastradas";
         } else {
-            People people = this.findPeopleByParams(params);
+            People people = IModelController.findPeopleByParams(params);
             if (people != null) {
                 DataBaseController.peoples.remove(people.getCpf());
                 return "Pessoa removida com sucesso";
@@ -73,9 +73,14 @@ public class PeopleController implements IModelController {
         }
     }
 
-    private People findPeopleByParams(HashMap<String, String> params) {
-        String cpf = params.get("cpf");
-        return DataBaseController.peoples.get(cpf);
+    @Override
+    public String add(HashMap<String, String> params, PrintStream printStream) {
+        return null;
+    }
+
+    @Override
+    public String remove(HashMap<String, String> params, PrintStream printStream) {
+        return null;
     }
 
 }

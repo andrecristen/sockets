@@ -17,6 +17,8 @@ public class ServerOperation {
     final String OPERATION_GET = "GET";
     final String OPERATION_DELETE = "DELETE";
     final String OPERATION_LIST = "LIST";
+    final String OPERATION_ADD = "ADD";
+    final String OPERATION_REMOVE = "REMOVE";
 
     PrintStream printStream;
     DataInputStream dataInputStream;
@@ -50,6 +52,8 @@ public class ServerOperation {
             case OPERATION_GET -> response = controller.get(params, this.printStream);
             case OPERATION_DELETE -> response = controller.delete(params, this.printStream);
             case OPERATION_LIST -> response = controller.list(params, this.printStream);
+            case OPERATION_ADD -> response = controller.add(params, this.printStream);
+            case OPERATION_REMOVE -> response = controller.remove(params, this.printStream);
             default -> throw new Exception("Operação não reconhecida.");
         }
         return response;

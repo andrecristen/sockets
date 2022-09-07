@@ -32,4 +32,14 @@ public class TeamController implements IModelController {
         return null;
     }
 
+    @Override
+    public String add(HashMap<String, String> params, PrintStream printStream) {
+        return null;
+    }
+
+    @Override
+    public String remove(HashMap<String, String> params, PrintStream printStream) {
+        return null;
+    }
+
 }

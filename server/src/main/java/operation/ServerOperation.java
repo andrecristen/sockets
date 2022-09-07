@@ -24,8 +24,10 @@ public class ServerOperation {
     DataInputStream dataInputStream;
     public ServerOperation(int port) throws Exception {
         ServerSocket serverSocket = new ServerSocket(port);
+        System.out.println("Esperando conexões");
         serverSocket.setReuseAddress(true);
         Socket socket = serverSocket.accept();
+        System.out.println("Conexão estabelecida");
 
         this.printStream = new PrintStream(socket.getOutputStream());
         this.dataInputStream = new DataInputStream(socket.getInputStream());

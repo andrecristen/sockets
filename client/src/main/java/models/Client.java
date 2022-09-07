@@ -39,7 +39,7 @@ public class Client {
                             this.socket.getInputStream()));
 
             String response = "";
-            while (!(response = br.readLine()).equals("exit")) {
+            while (response != "exit") {
                 System.out.println(response);
                 System.out.println("" +
                         "1 - Para gerir Pessoa \n" +
@@ -48,7 +48,7 @@ public class Client {
 
                 int modelToHandle = s.nextInt();
                 int operation = 0;
-                if (modelToHandle != 4) {
+                if (modelToHandle != 3) {
                     String msg = "Por favor, escolha a operação: \n" +
                             "1 - INSERT \n" +
                             "2 - UPDATE\n" +

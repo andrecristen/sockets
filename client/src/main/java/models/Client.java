@@ -150,7 +150,7 @@ public class Client {
                             case 3: {
                                 System.out.println("Nome da equipe:");
                                 String nomeEquipe = s.next();
-                                strOperation = "DELETE;
+                                strOperation = "DELETE";
                                 strParams = "nome=" + nomeEquipe;
                                 break;
                             }

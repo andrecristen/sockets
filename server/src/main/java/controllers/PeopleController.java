@@ -11,7 +11,7 @@ public class PeopleController implements IModelController {
     public String insert(HashMap<String, String> params, PrintStream printStream) {
         People people = new People(params.get("cpf"), params.get("nome"), params.get("endereco"));
         DataBaseController.peoples.put(people.getCpf(), people);
-        return null;
+        return "Pessoa cadastrada com sucesso";
     }
 
     public String update(HashMap<String, String> params, PrintStream printStream) {

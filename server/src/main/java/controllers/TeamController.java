@@ -17,8 +17,9 @@ public class TeamController implements IModelController {
             Date dataFundacao = DateUtil.stringToDateTime(params.get("dataFundacao"), DateUtil.FORMAT_DATE_BRAZILIAN);
             Team team = new Team(params.get("nome"), params.get("setor"), dataFundacao, lider);
             DataBaseController.teams.put(team.getNome(), team);
+            return "Equipe cadastrada comm sucesso";
         }
-        return null;
+        return "Erro na criação de equipe";
     }
 
     public String update(HashMap<String, String> params, PrintStream printStream) {

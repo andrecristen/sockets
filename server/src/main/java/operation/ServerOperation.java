@@ -30,6 +30,7 @@ public class ServerOperation {
         System.out.println("Conexão estabelecida");
 
         this.printStream = new PrintStream(socket.getOutputStream());
+        this.printStream.println("Conexão estabelecida");
         this.dataInputStream = new DataInputStream(socket.getInputStream());
 
         boolean inOperation = true;

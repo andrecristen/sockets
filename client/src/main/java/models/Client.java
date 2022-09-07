@@ -27,9 +27,6 @@ public class Client {
         this.port = port;
         try {
             this.socket = new Socket(host, port);
-            System.out.println("Conectado");
-
-            // to send data to the server
             this.stream = new DataOutputStream(
                     this.socket.getOutputStream());
 
@@ -39,7 +36,7 @@ public class Client {
                             this.socket.getInputStream()));
 
             String response = "";
-            while (response != "exit") {
+            while (!(response = br.readLine()).equals("exit")) {
                 System.out.println(response);
                 System.out.println("" +
                         "1 - Para gerir Pessoa \n" +
@@ -110,10 +107,7 @@ public class Client {
                             }
 //                          LIST
                             case 5: {
-                                System.out.println("cpf");
-                                String cpf = s.next();
                                 strOperation = "LIST";
-                                strParams = "cpf=" + cpf;
                                 break;
                             }
                             default: {
@@ -124,25 +118,34 @@ public class Client {
                         this.stream.writeUTF(message);
                         break;
                     }
+//                  HANDLE EQUIPE
                     case 2: {
                         String strParams = "";
                         String strOperation = "";
                         switch (operation) {
+//                          INSERT
                             case 1: {
                                 System.out.println("Nome da equipe:");
                                 String nomeEquipe = s.next();
-                                strParams = "nome=" + nomeEquipe;
+                                System.out.println("cpf do líder:");
+                                String cpfLider = s.next();
+                                System.out.println("Setor:");
+                                String setor = s.next();
+                                System.out.println("Data de fundação (dd/mm/yyyy):");
+                                String dataFundacao = s.next();
+                                strParams = "nome=" + nomeEquipe+ ";lider="+ cpfLider+ ";setor="+setor+";dataFundacao="+dataFundacao;
                                 strOperation = "INSERT";
                                 break;
                             }
+//                          UPDATE
                             case 2: {
                                 System.out.println("Nome da equipe:");
                                 String nomeEquipe = s.next();
 
                                 System.out.println("novo nome da equipe");
-                                String newClassNumber = s.next();
+                                String novoNomeEquipe = s.next();
 
-                                strParams = "nome=" + nomeEquipe+ ";novoNome="+newClassNumber;
+                                strParams = "nome=" + nomeEquipe+ ";novoNome="+novoNomeEquipe;
                                 strOperation = "UPDATE";
                                 break;
                             }
@@ -164,10 +167,7 @@ public class Client {
                             }
 //                          LIST
                             case 5: {
-                                System.out.println("Nome da equipe:");
-                                String nomeEquipe = s.next();
                                 strOperation = "LIST";
-                                strParams = "nome=" + nomeEquipe;
                                 break;
                             }
 //                          ADICIONAR PESSSOA NA EQUIPE

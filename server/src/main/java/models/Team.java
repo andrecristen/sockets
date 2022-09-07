@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Date;
+import java.util.HashMap;
 
 public class Team {
 
@@ -11,6 +12,8 @@ public class Team {
     protected Date dataFundacao;
 
     protected People lider;
+
+    protected HashMap<String, People> integrantes;
 
     public Team(String nome, String setor, Date dataFundacao, People lider) {
         this.nome = nome;
@@ -51,4 +54,30 @@ public class Team {
         this.lider = lider;
     }
 
+    public HashMap<String, People> getIntegrantes() {
+        return integrantes;
+    }
+
+    public void setIntegrantes(HashMap<String, People> integrantes) {
+        this.integrantes = integrantes;
+    }
+
+    public void addIntegrante(People integrante) {
+        this.integrantes.put(integrante.getCpf(), integrante);
+    }
+
+    public void removeIntegrante(People integrante) {
+        this.integrantes.remove(integrante.getCpf());
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "nome='" + nome + '\'' +
+                ", setor='" + setor + '\'' +
+                ", dataFundacao=" + dataFundacao +
+                ", lider=" + lider +
+                ", integrantes=" + integrantes +
+                '}';
+    }
 }

@@ -8,14 +8,12 @@ import java.util.HashMap;
 
 public class PeopleController implements IModelController {
 
-    @Override
     public String insert(HashMap<String, String> params, PrintStream printStream) {
         People people = new People(params.get("cpf"), params.get("nome"), params.get("endereco"));
         DataBaseController.peoples.put(people.getCpf(), people);
         return null;
     }
 
-    @Override
     public String update(HashMap<String, String> params, PrintStream printStream) {
         People people = IModelController.findPeopleByParams(params);
         if (people != null) {
@@ -27,7 +25,6 @@ public class PeopleController implements IModelController {
         }
     }
 
-    @Override
     public String get(HashMap<String, String> params, PrintStream printStream) {
         if (DataBaseController.peoples.isEmpty()) {
             return "Sem pessoas cadastradas";
@@ -41,7 +38,6 @@ public class PeopleController implements IModelController {
         }
     }
 
-    @Override
     public String delete(HashMap<String, String> params, PrintStream printStream) {
         if (DataBaseController.peoples.isEmpty()) {
             return "Sem pessoas cadastradas";
@@ -56,7 +52,6 @@ public class PeopleController implements IModelController {
         }
     }
 
-    @Override
     public String list(HashMap<String, String> params, PrintStream printStream) {
         if (DataBaseController.peoples.isEmpty()) {
             return "0";
@@ -73,7 +68,6 @@ public class PeopleController implements IModelController {
         }
     }
 
-    @Override
     public String add(HashMap<String, String> params, PrintStream printStream) {
         return null;
     }

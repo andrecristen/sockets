@@ -37,7 +37,7 @@ public class ClientOperation {
     }
 
     private void selectModelOperation() throws Exception {
-        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        Scanner scanner = new Scanner(System.in);
         System.out.println("\nSelecione o modelo que deseja gerir:\n 1 - Pessoa\n 2 - Equipe\n 3 - Sair");
         int modelToHandle = scanner.nextInt();
         switch (modelToHandle) {
@@ -66,42 +66,42 @@ public class ClientOperation {
     }
 
     private void handlePessoa(int option) throws IOException {
-        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        Scanner scanner = new Scanner(System.in);
         String params = "";
         String operation = "";
         switch (option) {
             case 1 : {
                 System.out.println("cpf");
-                String cpf = scanner.next();
+                String cpf = scanner.nextLine();
                 System.out.println("nome");
-                String nome = scanner.next();
+                String nome = scanner.nextLine();
                 System.out.println("endereco");
-                String endereco = scanner.next();
+                String endereco = scanner.nextLine();
                 params = "cpf=" + cpf + ";nome=" + nome + ";endereco=" + endereco;
                 operation = OPERATION_INSERT;
                 break;
             }
             case 2: {
                 System.out.println("cpf");
-                String cpf = scanner.next();
+                String cpf = scanner.nextLine();
                 System.out.println("nome");
-                String nome = scanner.next();
+                String nome = scanner.nextLine();
                 System.out.println("endereco");
-                String endereco = scanner.next();
+                String endereco = scanner.nextLine();
                 params = "cpf=" + cpf + ";nome=" + nome + ";endereco=" + endereco;
                 operation = OPERATION_UPDATE;
                 break;
             }
             case 3: {
                 System.out.println("cpf");
-                String cpf = scanner.next();
+                String cpf = scanner.nextLine();
                 operation = OPERATION_DELETE;
                 params = "cpf=" + cpf;
                 break;
             }
             case 4: {
                 System.out.println("cpf");
-                String cpf = scanner.next();
+                String cpf = scanner.nextLine();
                 operation = OPERATION_GET;
                 params = "cpf=" + cpf;
                 break;
@@ -122,36 +122,36 @@ public class ClientOperation {
         switch (option) {
             case 1: {
                 System.out.println("Nome da equipe:");
-                String nomeEquipe = scanner.next();
+                String nomeEquipe = scanner.nextLine();
                 System.out.println("cpf do líder:");
-                String cpfLider = scanner.next();
+                String cpfLider = scanner.nextLine();
                 System.out.println("Setor:");
-                String setor = scanner.next();
+                String setor = scanner.nextLine();
                 System.out.println("Data de fundação (dd/mm/yyyy):");
-                String dataFundacao = scanner.next();
+                String dataFundacao = scanner.nextLine();
                 params = "nome=" + nomeEquipe+ ";lider="+ cpfLider+ ";setor="+setor+";dataFundacao="+dataFundacao;
                 operation = OPERATION_INSERT;
                 break;
             }
             case 2: {
                 System.out.println("Nome da equipe:");
-                String nomeEquipe = scanner.next();
+                String nomeEquipe = scanner.nextLine();
                 System.out.println("Novo nome da equipe");
-                String novoNomeEquipe = scanner.next();
+                String novoNomeEquipe = scanner.nextLine();
                 params = "nome=" + nomeEquipe+ ";novoNome="+novoNomeEquipe;
                 operation = OPERATION_UPDATE;
                 break;
             }
             case 3: {
                 System.out.println("Nome da equipe:");
-                String nomeEquipe = scanner.next();
+                String nomeEquipe = scanner.nextLine();
                 operation = OPERATION_DELETE;
                 params = "nome=" + nomeEquipe;
                 break;
             }
             case 4: {
                 System.out.println("Nome da equipe:");
-                String nomeEquipe = scanner.next();
+                String nomeEquipe = scanner.nextLine();
                 operation = OPERATION_GET;
                 params = "nome=" + nomeEquipe;
                 break;
@@ -162,9 +162,9 @@ public class ClientOperation {
             }
             case 6:{
                 System.out.println("Nome da equipe:");
-                String nomeEquipe = scanner.next();
+                String nomeEquipe = scanner.nextLine();
                 System.out.println("CPF da Pessoa:");
-                String cpf = scanner.next();
+                String cpf = scanner.nextLine();
                 params = "nome=" + nomeEquipe + ";cpf=" + cpf;
                 operation = OPERATION_ADD;
                 break;
@@ -172,9 +172,9 @@ public class ClientOperation {
             }
             case 7:{
                 System.out.println("Nome da equipe:");
-                String nomeEquipe = scanner.next();
+                String nomeEquipe = scanner.nextLine();
                 System.out.println("CPF da pessoa: ");
-                String cpf = scanner.next();
+                String cpf = scanner.nextLine();
                 params = "nome=" + nomeEquipe + ";cpf=" + cpf;
                 operation = OPERATION_REMOVE;
                 break;

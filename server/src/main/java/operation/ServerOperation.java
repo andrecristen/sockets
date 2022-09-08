@@ -27,10 +27,9 @@ public class ServerOperation {
         System.out.println("Esperando conexões");
         serverSocket.setReuseAddress(true);
         Socket socket = serverSocket.accept();
-        System.out.println("Conexão estabelecida");
 
         this.printStream = new PrintStream(socket.getOutputStream());
-        this.printStream.println("Conexão estabelecida");
+        System.out.println("Conexão estabelecida");
         this.dataInputStream = new DataInputStream(socket.getInputStream());
 
         boolean inOperation = true;

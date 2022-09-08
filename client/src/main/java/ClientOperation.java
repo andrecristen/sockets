@@ -28,10 +28,10 @@ public class ClientOperation {
         byte[] dadosBrutos = new byte[1024];
         int qtdBytesLidos = 0;
         while (qtdBytesLidos >= 0) {
+            selectModelOperation();
             qtdBytesLidos = in.read(dadosBrutos);
             String response = new String(dadosBrutos, 0, qtdBytesLidos);
             System.out.println(response);
-            selectModelOperation();
         }
     }
 

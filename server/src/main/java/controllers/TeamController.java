@@ -117,7 +117,7 @@ public class TeamController implements IModelController {
             Team team = IModelController.findTeamByParams(params);
             if (team != null) {
                 team.removeIntegrante(people);
-                return "Integrante adicionado a equipe";
+                return "Integrante removido da equipe";
             } else {
                 return "Equipe não encontrada";
             }

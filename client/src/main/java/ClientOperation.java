@@ -138,7 +138,13 @@ public class ClientOperation {
                 String nomeEquipe = scanner.nextLine();
                 System.out.println("Novo nome da equipe");
                 String novoNomeEquipe = scanner.nextLine();
-                params = "nome=" + nomeEquipe+ ";novoNome="+novoNomeEquipe;
+                System.out.println("cpf do líder:");
+                String cpfLider = scanner.nextLine();
+                System.out.println("Setor:");
+                String setor = scanner.nextLine();
+                System.out.println("Data de fundação (dd/mm/yyyy):");
+                String dataFundacao = scanner.nextLine();
+                params = "nome=" + nomeEquipe+ ";novoNome="+novoNomeEquipe + ";lider="+ cpfLider+ ";setor="+setor+";dataFundacao="+dataFundacao;
                 operation = OPERATION_UPDATE;
                 break;
             }

@@ -36,7 +36,7 @@ public class ClientOperation {
     }
 
     private void selectModelOperation() throws Exception {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         System.out.println("Selecione o modelo que deseja gerir:\n 1 - Pessoa\n 2 - Equipe\n 3 - Sair");
         int modelToHandle = scanner.nextInt();
         switch (modelToHandle) {
@@ -65,7 +65,7 @@ public class ClientOperation {
     }
 
     private void handlePessoa(int option) throws IOException {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         String params = "";
         String operation = "";
         switch (option) {

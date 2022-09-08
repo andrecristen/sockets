@@ -5,13 +5,12 @@ import models.People;
 import models.Team;
 import utils.DateUtil;
 
-import java.io.PrintStream;
 import java.util.Date;
 import java.util.HashMap;
 
 public class TeamController implements IModelController {
 
-    public String insert(HashMap<String, String> params, PrintStream printStream) {
+    public String insert(HashMap<String, String> params) {
         People lider = DataBaseController.peoples.get(params.get("lider"));
         if (lider != null) {
             Date dataFundacao = DateUtil.stringToDateTime(params.get("dataFundacao"), DateUtil.FORMAT_DATE_BRAZILIAN);
@@ -23,7 +22,7 @@ public class TeamController implements IModelController {
         return "Erro na criação de equipe";
     }
 
-    public String update(HashMap<String, String> params, PrintStream printStream) {
+    public String update(HashMap<String, String> params) {
         Team team = IModelController.findTeamByParams(params);
         if (team != null) {
             People lider = DataBaseController.peoples.get(params.get("lider"));
@@ -42,7 +41,7 @@ public class TeamController implements IModelController {
         }
     }
 
-    public String get(HashMap<String, String> params, PrintStream printStream) {
+    public String get(HashMap<String, String> params) {
         if (DataBaseController.teams.isEmpty()) {
             return "Sem equipes cadastradas";
         } else {
@@ -55,7 +54,7 @@ public class TeamController implements IModelController {
         }
     }
 
-    public String delete(HashMap<String, String> params, PrintStream printStream) {
+    public String delete(HashMap<String, String> params) {
         if (DataBaseController.teams.isEmpty()) {
             return "Sem equipes cadastradas";
         } else {
@@ -69,7 +68,7 @@ public class TeamController implements IModelController {
         }
     }
 
-    public String list(HashMap<String, String> params, PrintStream printStream) {
+    public String list(HashMap<String, String> params) {
         if (DataBaseController.teams.isEmpty()) {
             return "0";
         } else {
@@ -85,7 +84,7 @@ public class TeamController implements IModelController {
         }
     }
 
-    public String add(HashMap<String, String> params, PrintStream printStream) {
+    public String add(HashMap<String, String> params) {
         if (DataBaseController.teams.isEmpty()) {
             return  "Sem equipes cadastradas";
         }
@@ -105,7 +104,7 @@ public class TeamController implements IModelController {
             return "Pessoa não encontrada";
         }
     }
-    public String remove(HashMap<String, String> params, PrintStream printStream) {
+    public String remove(HashMap<String, String> params) {
         if (DataBaseController.teams.isEmpty()) {
             return  "Sem equipes cadastradas";
         }

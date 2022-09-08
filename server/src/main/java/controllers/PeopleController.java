@@ -3,18 +3,17 @@ package controllers;
 import interfaces.IModelController;
 import models.People;
 
-import java.io.PrintStream;
 import java.util.HashMap;
 
 public class PeopleController implements IModelController {
 
-    public String insert(HashMap<String, String> params, PrintStream printStream) {
+    public String insert(HashMap<String, String> params) {
         People people = new People(params.get("cpf"), params.get("nome"), params.get("endereco"));
         DataBaseController.peoples.put(people.getCpf(), people);
         return "Pessoa cadastrada com sucesso";
     }
 
-    public String update(HashMap<String, String> params, PrintStream printStream) {
+    public String update(HashMap<String, String> params) {
         People people = IModelController.findPeopleByParams(params);
         if (people != null) {
             people.setNome(params.get("nome"));
@@ -25,7 +24,7 @@ public class PeopleController implements IModelController {
         }
     }
 
-    public String get(HashMap<String, String> params, PrintStream printStream) {
+    public String get(HashMap<String, String> params) {
         if (DataBaseController.peoples.isEmpty()) {
             return "Sem pessoas cadastradas";
         } else {
@@ -38,7 +37,7 @@ public class PeopleController implements IModelController {
         }
     }
 
-    public String delete(HashMap<String, String> params, PrintStream printStream) {
+    public String delete(HashMap<String, String> params) {
         if (DataBaseController.peoples.isEmpty()) {
             return "Sem pessoas cadastradas";
         } else {
@@ -52,7 +51,7 @@ public class PeopleController implements IModelController {
         }
     }
 
-    public String list(HashMap<String, String> params, PrintStream printStream) {
+    public String list(HashMap<String, String> params) {
         if (DataBaseController.peoples.isEmpty()) {
             return "0";
         } else {
@@ -68,12 +67,11 @@ public class PeopleController implements IModelController {
         }
     }
 
-    public String add(HashMap<String, String> params, PrintStream printStream) {
+    public String add(HashMap<String, String> params) {
         return null;
     }
 
-    @Override
-    public String remove(HashMap<String, String> params, PrintStream printStream) {
+    public String remove(HashMap<String, String> params) {
         return null;
     }
 

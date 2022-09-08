@@ -5,7 +5,6 @@ import controllers.TeamController;
 import interfaces.IModelController;
 
 import java.io.DataInputStream;
-import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -20,24 +19,23 @@ public class ServerOperation {
     final String OPERATION_ADD = "ADD";
     final String OPERATION_REMOVE = "REMOVE";
 
-    PrintStream printStream;
     DataInputStream dataInputStream;
+
     public ServerOperation(int port) throws Exception {
         ServerSocket serverSocket = new ServerSocket(port);
         System.out.println("Esperando conexões");
         serverSocket.setReuseAddress(true);
         Socket socket = serverSocket.accept();
 
-        this.printStream = new PrintStream(socket.getOutputStream());
         System.out.println("Conexão estabelecida");
         this.dataInputStream = new DataInputStream(socket.getInputStream());
 
         boolean inOperation = true;
-        while(inOperation) {
+        while (inOperation) {
             String message = this.dataInputStream.readUTF();
             String response = this.executeOperation(message);
             System.out.println("Resposta: \n" + response);
-            this.printStream.println(response);
+            socket.getOutputStream().write(response.getBytes());
         }
     }
 
@@ -45,20 +43,41 @@ public class ServerOperation {
         System.out.println("Requisição recebida: " + message);
         String response;
         HashMap<String, String> params = this.getParams(message);
-        IModelController controller = switch (params.get("modelo")) {
-            case "pessoa" -> new PeopleController();
-            case "equipe" -> new TeamController();
-            default -> throw new Exception("Modelo não reconhecido.");
-        };
+        IModelController controller;
+        switch (params.get("modelo")) {
+            case "pessoa":
+                controller = new PeopleController();
+                break;
+            case "equipe":
+                controller = new TeamController();
+                break;
+            default:
+                throw new Exception("Modelo não reconhecido.");
+        }
         switch (params.get("operacao")) {
-            case OPERATION_INSERT -> response = controller.insert(params, this.printStream);
-            case OPERATION_UPDATE -> response = controller.update(params, this.printStream);
-            case OPERATION_GET -> response = controller.get(params, this.printStream);
-            case OPERATION_DELETE -> response = controller.delete(params, this.printStream);
-            case OPERATION_LIST -> response = controller.list(params, this.printStream);
-            case OPERATION_ADD -> response = controller.add(params, this.printStream);
-            case OPERATION_REMOVE -> response = controller.remove(params, this.printStream);
-            default -> throw new Exception("Operação não reconhecida.");
+            case OPERATION_INSERT:
+                response = controller.insert(params);
+                break;
+            case OPERATION_UPDATE:
+                response = controller.update(params);
+                break;
+            case OPERATION_GET:
+                response = controller.get(params);
+                break;
+            case OPERATION_DELETE:
+                response = controller.delete(params);
+                break;
+            case OPERATION_LIST:
+                response = controller.list(params);
+                break;
+            case OPERATION_ADD:
+                response = controller.add(params);
+                break;
+            case OPERATION_REMOVE:
+                response = controller.remove(params);
+                break;
+            default:
+                throw new Exception("Operação não reconhecida.");
         }
         return response;
     }

@@ -32,12 +32,13 @@ public class ClientOperation {
             qtdBytesLidos = in.read(dadosBrutos);
             String response = new String(dadosBrutos, 0, qtdBytesLidos);
             System.out.println(response);
+            System.out.println("\n");
         }
     }
 
     private void selectModelOperation() throws Exception {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
-        System.out.println("Selecione o modelo que deseja gerir:\n 1 - Pessoa\n 2 - Equipe\n 3 - Sair");
+        System.out.println("\nSelecione o modelo que deseja gerir:\n 1 - Pessoa\n 2 - Equipe\n 3 - Sair");
         int modelToHandle = scanner.nextInt();
         switch (modelToHandle) {
             case 1:

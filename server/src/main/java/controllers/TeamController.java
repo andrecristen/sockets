@@ -16,6 +16,7 @@ public class TeamController implements IModelController {
         if (lider != null) {
             Date dataFundacao = DateUtil.stringToDateTime(params.get("dataFundacao"), DateUtil.FORMAT_DATE_BRAZILIAN);
             Team team = new Team(params.get("nome"), params.get("setor"), dataFundacao, lider);
+            team.addIntegrante(lider);
             DataBaseController.teams.put(team.getNome(), team);
             return "Equipe cadastrada comm sucesso";
         }
@@ -85,11 +86,11 @@ public class TeamController implements IModelController {
     }
 
     public String add(HashMap<String, String> params, PrintStream printStream) {
-        if (DataBaseController.peoples.isEmpty()) {
-            return "Sem pessoas cadastradas";
-        }
         if (DataBaseController.teams.isEmpty()) {
             return  "Sem equipes cadastradas";
+        }
+        if (DataBaseController.peoples.isEmpty()) {
+            return "Sem pessoas cadastradas";
         }
         People people = IModelController.findPeopleByParams(params);
         if (people != null) {
@@ -105,11 +106,11 @@ public class TeamController implements IModelController {
         }
     }
     public String remove(HashMap<String, String> params, PrintStream printStream) {
-        if (DataBaseController.peoples.isEmpty()) {
-            return "Sem pessoas cadastradas";
-        }
         if (DataBaseController.teams.isEmpty()) {
             return  "Sem equipes cadastradas";
+        }
+        if (DataBaseController.peoples.isEmpty()) {
+            return "Sem pessoas cadastradas";
         }
         People people = IModelController.findPeopleByParams(params);
         if (people != null) {

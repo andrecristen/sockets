@@ -15,7 +15,7 @@ public class Team {
 
     protected People lider;
 
-    protected HashMap<String, People> integrantes;
+    protected HashMap<String, People> integrantes = new HashMap<String, People>();
 
     public Team(String nome, String setor, Date dataFundacao, People lider) {
         this.nome = nome;

@@ -1,7 +1,3 @@
-
-import models.Client;
-import models.ClientOperation;
-
 import java.util.Scanner;
 
 public class Start {
@@ -13,5 +9,5 @@ public class Start {
         int port = s.nextInt();
         new ClientOperation(host, port);
     }
-    
+
 }

@@ -1,0 +1,10 @@
+Para executar:
+
+Server:
+
+   java -jar server.jar
+
+Client:
+
+   java -jar client.jar
+   

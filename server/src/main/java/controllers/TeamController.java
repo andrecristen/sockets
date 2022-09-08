@@ -27,11 +27,14 @@ public class TeamController implements IModelController {
         if (team != null) {
             People lider = DataBaseController.peoples.get(params.get("lider"));
             if (lider != null) {
+                String nomeAntigo = team.getNome();
                 Date dataFundacao = DateUtil.stringToDateTime(params.get("dataFundacao"), DateUtil.FORMAT_DATE_BRAZILIAN);
                 team.setNome(params.get("novoNome"));
                 team.setSetor(params.get("setor"));
                 team.setDataFundacao(dataFundacao);
                 team.setLider(lider);
+                DataBaseController.teams.remove(nomeAntigo);
+                DataBaseController.teams.put(team.getNome(), team);
                 return "Equipe atualizada com sucesso";
             } else {
                 return "Lider informado não encontrado";
